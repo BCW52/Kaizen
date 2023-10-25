@@ -36,3 +36,12 @@ fi
 # Print installation instructions
 echo "Please review the Flutter installation instructions at:"
 echo "https://flutter.dev/docs/get-started/install/linux"
+if ! command -v flutter &> /dev/null; then
+  echo "Flutter not found. Installing..."
+else
+  sudo apt install snapd
+  sudo systemctl enable snapd
+  sudo systemctl start snapd
+  sudo snap install flutter --classic
+fi
+  echo "Flutter installation completed."
