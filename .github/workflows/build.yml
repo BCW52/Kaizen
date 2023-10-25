@@ -29,12 +29,12 @@ jobs:
         with:
           flutter-version: '2.x'  # Or specify the version you want
           flutter-channel: 'stable'  # Or specify the channel you prefer
-          flutter-directory: ${{ secrets.FLUTTER_SDK_PATH }}  # Set the directory where Flutter should be installed
+          flutter-directory: ${{ github.workspace }}/flutter  # Set the directory where Flutter should be installed
 
       - name: Copy local properties
         run: |
           echo "sdk.dir=${{ secrets.SDK_DIR }}" >> local.properties
-          echo "flutter.sdk=${{ secrets.FLUTTER_SDK }}" >> local.properties
+          echo "flutter.sdk=${{ github.workspace }}/flutter" >> local.properties
           echo "flutter.buildMode=${{ secrets.FLUTTER_BUILD_MODE }}" >> local.properties
           echo "flutter.versionName=${{ secrets.FLUTTER_VERSION_NAME }}" >> local.properties
           echo "flutter.versionCode=${{ secrets.FLUTTER_VERSION_CODE }}" >> local.properties
