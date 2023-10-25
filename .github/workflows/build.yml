@@ -1,0 +1,43 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      FLUTTER_HOME: ${{ github.workspace }}/flutter
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt' # Adjust this to your project's Java version
+
+      - name: Set up Flutter SDK
+        run: echo "FLUTTER_HOME=${{ env.FLUTTER_HOME }}" >> $GITHUB_ENV
+
+      - name: Build APK
+        run: |
+          chmod +x $GITHUB_WORKSPACE/gradlew
+          $GITHUB_WORKSPACE/gradlew assembleDebug
+        working-directory: ${{ github.workspace }}
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
