@@ -1,7 +1,7 @@
 include ':app', ':vpnLib'
 
 // Set the Flutter SDK path to the location where it's set up in your GitHub Actions workflow
-def flutterSdkPath = "/github/home/flutter"  // Update this path to match your setup
+def flutterSdkPath = '/github/home/flutter'
 
 // Ensure that the Flutter SDK path exists
 assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"

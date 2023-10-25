@@ -1,4 +1,4 @@
-name: Build APK
+name: Kaizen VPN
 
 on:
   push:
@@ -11,9 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      FLUTTER_HOME: ${{ github.workspace }}/flutter
 
     steps:
       - name: Checkout repository
@@ -28,7 +25,11 @@ jobs:
           distribution: 'adopt' # Adjust this to your project's Java version
 
       - name: Set up Flutter SDK
-        run: echo "FLUTTER_HOME=${{ env.FLUTTER_HOME }}" >> $GITHUB_ENV
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.x'  # Or specify the version you want
+          flutter-channel: 'stable'  # Or specify the channel you prefer
+          flutter-directory: '/github/home/flutter'  # Set the directory where Flutter should be installed
 
       - name: Build APK
         run: |
