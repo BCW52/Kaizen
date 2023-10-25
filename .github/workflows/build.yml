@@ -25,20 +25,10 @@ jobs:
           distribution: 'adopt' # Adjust this to your project's Java version
 
       - name: Set up Flutter SDK
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '2.x'  # Or specify the version you want
-          flutter-channel: 'stable'  # Or specify the channel you prefer
-          flutter-directory: ${{ github.workspace }}/flutter  # Set the directory where Flutter should be installed
-
-      - name: Copy local properties
         run: |
-          echo "sdk.dir=${{ secrets.SDK_DIR }}" >> local.properties
-          echo "flutter.sdk=${{ github.workspace }}/flutter" >> local.properties
-          echo "flutter.buildMode=${{ secrets.FLUTTER_BUILD_MODE }}" >> local.properties
-          echo "flutter.versionName=${{ secrets.FLUTTER_VERSION_NAME }}" >> local.properties
-          echo "flutter.versionCode=${{ secrets.FLUTTER_VERSION_CODE }}" >> local.properties
-        working-directory: ${{ github.workspace }}
+          git clone https://github.com/flutter/flutter.git /home/runner/work/Kaizen/flutter
+          export PATH="$PATH:/home/runner/work/Kaizen/flutter/bin"
+        shell: bash
 
       - name: Build APK
         run: |

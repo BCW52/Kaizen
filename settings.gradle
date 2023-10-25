@@ -1,10 +1,11 @@
+// Define which modules should be included in the project
 include ':app', ':vpnLib'
 
-// Set the Flutter SDK path to the location where it's set up in your GitHub Actions workflow
-def flutterSdkPath = '/github/home/flutter'
+// Specify the path to the Flutter SDK within the GitHub Actions workspace
+def flutterSdkPath = "${github.workspace}/flutter"
 
-// Ensure that the Flutter SDK path exists
+// Ensure that the Flutter SDK is available at the specified path
 assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"
 
-// Apply the Flutter plugin by specifying the path to app_plugin_loader.gradle
+// Apply the Flutter plugin
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
