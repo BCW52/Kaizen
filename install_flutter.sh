@@ -15,7 +15,7 @@ if ! command -v flutter &> /dev/null; then
   # Download and extract Flutter
   cd "$FLUTTER_INSTALL_DIR"
   curl -O -L "$FLUTTER_TAR_URL"
-  tar xf "flutter_linux_3.13.8-stable.tar.xz"
+  tar -xvf "flutter_linux_3.13.8-stable.tar.xz"
   
   # Add Flutter to the PATH for this session
   export PATH="$PATH:$FLUTTER_INSTALL_DIR/flutter/bin"
@@ -34,3 +34,6 @@ fi
 # Print installation instructions
 echo "Please review the Flutter installation instructions at:"
 echo "$FLUTTER_SDK_URL"
+
+# Verify Flutter installation
+flutter --version
