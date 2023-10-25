@@ -26,8 +26,8 @@ jobs:
 
       - name: Set up Flutter SDK
         run: |
-          chmod +x install_flutter.sh
-          ./install_flutter.sh
+          ${{ github.workspace }}/chmod +x install_flutter.sh
+          ${{ github.workspace }}/./install_flutter.sh
         working-directory: ${{ github.workspace }}
         env:
           FLUTTER_HOME: ${{ github.workspace }}/flutter
