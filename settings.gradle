@@ -1,8 +1,8 @@
 // Define which modules should be included in the project
 include ':app', ':vpnLib'
 
-// Specify the path to the Flutter SDK within the GitHub Actions workspace
-def flutterSdkPath = "${github.workspace}/flutter"
+// Specify the path to the Flutter SDK
+def flutterSdkPath = "${System.getenv('GITHUB_WORKSPACE')}/flutter"  // Use the environment variable GITHUB_WORKSPACE
 
 // Ensure that the Flutter SDK is available at the specified path
 assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"
