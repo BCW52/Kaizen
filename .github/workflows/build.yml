@@ -33,8 +33,12 @@ jobs:
           FLUTTER_HOME: ${{ github.workspace }}/flutter
 
       - name: Build APK
-        run: flutter build apk --debug
-        working-directory: ${{ github.workspace }}
+        run: |
+          cd ${{ github.workspace }}/app
+          flutter --disable-telemetry
+          flutter build apk --debug
+        working-directory: ${{ github.workspace }}/app
+
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
