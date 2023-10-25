@@ -1,11 +1,20 @@
 // Define which modules should be included in the project
 include ':app', ':vpnLib'
 
-// Specify the path to the Flutter SDK
-def flutterSdkPath = "${System.getenv('GITHUB_WORKSPACE')}/flutter"  // Use the environment variable GITHUB_WORKSPACE
+def flutterSdkPath = ""
+try {
+    def process = 'flutter --machine'.execute()
+    def jsonOutput = new JsonSlurper().parseText(process.text)
 
-// Ensure that the Flutter SDK is available at the specified path
-assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"
+    if (jsonOutput.flutterRoot) {
+        flutterSdkPath = jsonOutput.flutterRoot
+    }
+} catch (Exception e) {
+    println "Error while getting Flutter SDK path: $e"
+}
+
+// Ensure that the Flutter SDK is available
+assert flutterSdkPath, "Flutter SDK not found."
 
 // Apply the Flutter plugin
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
