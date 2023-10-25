@@ -3,8 +3,6 @@ include ':app', ':vpnLib'
 
 def flutterSdkPath = "/home/runner/work/Kaizen/flutter"  // Set the correct path
 
-// Ensure that the Flutter SDK is available
-assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"
 
 // Apply the Flutter plugin
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
