@@ -34,10 +34,10 @@ jobs:
 
       - name: Build APK
         run: |
-          cd ${{ github.workspace }}/app
+          cd ${{ github.workspace }}
           flutter --disable-telemetry
           flutter build apk --debug
-        working-directory: ${{ github.workspace }}/app
+        working-directory: ${{ github.workspace }}
 
 
       - name: Upload APK
