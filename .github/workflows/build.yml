@@ -29,9 +29,9 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           export PATH="$PATH:${{ github.workspace }}/flutter/bin"
           flutter config --no-analytics
+          flutter doctor -v  # Check Flutter configuration
           flutter doctor
-          flutter doctor -v
-          flutter doctor
+          flutter pub get  # Fetch project dependencies
         working-directory: ${{ github.workspace }}
         env:
           FLUTTER_HOME: ${{ github.workspace }}/flutter
