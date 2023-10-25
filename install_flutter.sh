@@ -3,7 +3,8 @@
 # Define the installation directory
 FLUTTER_INSTALL_DIR="$HOME/development"
 FLUTTER_SDK_URL="https://flutter.dev/docs/get-started/install/linux"
-FLUTTER_TAR_URL="https://flutter.dev/docs/get-started/install/linux/release/linux_x64/flutter_linux_3.13.8-stable.tar.xz"
+FLUTTER_TAR_URL="https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.5.0-stable.tar.xz"
+sudo apt-get install xz-utils
 
 # Install Flutter
 if ! command -v flutter &> /dev/null; then
