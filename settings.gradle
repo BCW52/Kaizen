@@ -4,5 +4,3 @@ include ':app', ':vpnLib'
 def flutterSdkPath = "/home/runner/work/Kaizen/flutter"  // Set the correct path
 
 
-// Apply the Flutter plugin
-apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
