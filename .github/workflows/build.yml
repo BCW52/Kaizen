@@ -26,9 +26,11 @@ jobs:
 
       - name: Set up Flutter SDK
         run: |
-          git clone https://github.com/flutter/flutter.git /home/runner/work/Kaizen/flutter
-          export PATH="$PATH:/home/runner/work/Kaizen/flutter/bin"
-        shell: bash
+          git clone https://github.com/flutter/flutter.git
+          export PATH="$PATH:`pwd`/flutter/bin"
+          flutter config --no-analytics
+          flutter doctor
+        working-directory: ${{ github.workspace }}
 
       - name: Build APK
         run: |
