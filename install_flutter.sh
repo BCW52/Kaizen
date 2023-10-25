@@ -28,7 +28,8 @@ fi
 
 # Check if Flutter is in the PATH for all future sessions
 if ! grep -q "flutter/bin" "$HOME/.bashrc"; then
-  echo 'export PATH="$PATH:'"`pwd`/flutter/bin"' >> "$HOME/.bashrc"
+echo 'export PATH="$PATH:'"`pwd`/flutter/bin"'"' >> "$HOME/.bashrc"
+
   echo "PATH updated for all future sessions."
 fi
 
