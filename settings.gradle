@@ -1,20 +1,10 @@
 // Define which modules should be included in the project
 include ':app', ':vpnLib'
 
-def flutterSdkPath = ""
-try {
-    def process = 'flutter --machine'.execute()
-    def jsonOutput = new JsonSlurper().parseText(process.text)
-
-    if (jsonOutput.flutterRoot) {
-        flutterSdkPath = jsonOutput.flutterRoot
-    }
-} catch (Exception e) {
-    println "Error while getting Flutter SDK path: $e"
-}
+def flutterSdkPath = "/home/runner/work/Kaizen/flutter"  // Set the correct path
 
 // Ensure that the Flutter SDK is available
-assert flutterSdkPath, "Flutter SDK not found."
+assert new File(flutterSdkPath).exists(), "Flutter SDK not found at $flutterSdkPath"
 
 // Apply the Flutter plugin
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
