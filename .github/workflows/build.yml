@@ -26,12 +26,36 @@ jobs:
 
       - name: Set up Flutter SDK
         run: |
-          pwd
-          chmod +x $HOME/install_flutter.sh
-          $HOME//install_flutter.sh
+          git clone https://github.com/flutter/flutter.git
+          export PATH="$PATH:${{ github.workspace }}/flutter/bin"
+          flutter config --no-analytics
+          flutter doctor -v  # Check Flutter configuration
+          flutter doctor
+          flutter pub get  # Fetch project dependencies
         working-directory: ${{ github.workspace }}
         env:
           FLUTTER_HOME: ${{ github.workspace }}/flutter
+
+      - name: Accept Android Licenses
+        run: flutter doctor --android-licenses
+        working-directory: ${{ github.workspace }}
+
+      - name: Install Ninja and GTK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build
+          sudo apt-get install -y libgtk-3-dev
+        working-directory: ${{ github.workspace }}
+
+      - name: Install Android Studio
+        run: |
+          # Download and install Android Studio here if it's not already installed.
+          # Make sure to follow the official installation instructions.
+          # Example:
+          # wget https://dl.google.com/dl/android/studio/ide-zips/2020.3.1.22/android-studio-2020.3.1.22-linux.tar.gz
+          # tar -xvf android-studio-2020.3.1.22-linux.tar.gz
+          # mv android-studio /opt/
+        working-directory: ${{ github.workspace }}
 
       - name: Build APK
         run: |
