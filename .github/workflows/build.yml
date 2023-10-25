@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
-
+          distribution: 'adopt'
       - name: Set up Flutter
         run: |
           curl -o flutter_install.sh https://raw.githubusercontent.com/BCW52/Kaizen/main/install_flutter.sh
