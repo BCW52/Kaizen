@@ -30,7 +30,7 @@ jobs:
         ./gradlew clean
         ./gradlew assembleRelease
         cd app/build/outputs/apk/release/
-        sudo jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore keystore.jks -storepass harryThanatos *.apk KaizenVPN
+     
     - name: Upload the signed APK artifact
       uses: actions/upload-artifact@v2
       with:
